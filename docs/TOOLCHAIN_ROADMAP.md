@@ -9,13 +9,13 @@
 | 半自动 | 青鸟 9225，飞书 gateway | 已部署 |
 | 管道 | 大禹 pipeline watchdog/reconcile | 计划任务 Hidden |
 | 证据 | evidence_ops + savepoint | 真源 monorepo |
-| 本仓 | skills + evals + docs | **Phase 2 已完成** |
+| 本仓 | skills + evals + docs | Phase 2 已完成 |
 
 ## Phase 3（下一步）
 
-- [ ] `scripts/` 轻量 CLI：manifest 校验、eval 跑分
-- [ ] skills 与 Cursor `.cursor/skills` 同步清单
-- [ ] evals 自动化 → GitHub Actions on `ai-team-ops`
+- [ ] scripts/ 轻量 CLI：manifest 校验、eval 跑分
+- [ ] skills 与 Cursor .cursor/skills 同步清单
+- [ ] evals 自动化 → GitHub Actions on ai-team-ops
 - [ ] 角色 inbox JSON schema 版本化
 
 ## Phase 4

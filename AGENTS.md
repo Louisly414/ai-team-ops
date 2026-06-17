@@ -27,57 +27,55 @@
 
 ---
 
-## 六角色分工
-
-| 角色 | 代号 | 职责 | 典型产出 |
-|------|------|------|----------|
-| **玄策** | 指挥官 | 战略、派单、验收、风险闸门；不 idle | 裁定、handoff、`latest_topic.md`、飞书卡片 |
-| **白起** | 主执行 | 主代码路径、高判断变更、经营向实现 | PR、脚本、Alpha 实验闭环 |
-| **卫青** | 副执行 | 白起限额/阻塞时的接棒；常规任务 | 同白起，规模较小、接棒 receipt |
-| **鲁班** | 技术救援 | 环境、selector、RPA、多文件工程 | patch、reconcile、CDP 9224 |
-| **青鸟** | 搬运半自动 | 飞书字段、素材归档、表格、轻量 RPA | 结构化字段、素材路径、半自动 SOP |
-| **大禹** | 管道治理 | 队列健康、降级接棒、跨角色管道不断流 | watchdog 报告、pipeline reconcile |
+## 团队角色
 
 ### 玄策
 
-- 统一 ingress：`xuance_command_gateway` / broker job。
-- 验收必须指向 **evidence 路径**，口头 pass 无效。
-- 正式阶段：平台上架需 Louis 飞书批准；训练阶段不预阻塞研发速度。
+- 战略 / 裁决 / 验收 / 风险闸门
+- 统一 ingress：`xuance_command_gateway` / broker job
+- 验收必须指向 **evidence 路径**，口头 pass 无效
+- 正式阶段：平台上架需 Louis 飞书批准；训练阶段不预阻塞研发速度
 
 ### 白起
 
-- 默认 CDP owner：**9223**。
-- 每个 SKU/任务应推进 Alpha 12 问清单；gap = 更多侦察，不是 idle stop。
+- 主代码执行 / 高判断 / 高变化
+- 默认 CDP owner：**9223**
+- 每个 SKU/任务应推进 Alpha 12 问清单；gap = 更多侦察，不是 idle stop
 
 ### 卫青
 
-- 与白起同栈，**不**重复抢同一 ticket；接棒时写 inbox receipt 与 handoff 指针。
+- 副白起 / 接棒执行
+- 与白起同栈，**不**重复抢同一 ticket
+- 接棒时写 inbox receipt 与 handoff 指针
 
 ### 鲁班
 
-- 默认 CDP owner：**9224**；Cursor Pro+ 重活用 Premium+Max。
-- 可复用战术写入 weapon library；handoff 只写状态与下一步。
+- 技术救援 / 环境 / 排障
+- 默认 CDP owner：**9224**；Cursor Pro+ 重活用 Premium+Max
+- 可复用战术写入 weapon library；handoff 只写状态与下一步
 
 ### 青鸟
 
-- 默认 CDP owner：**9225**（与大禹共用端口锁）。
-- 产出优先 **结构化 + 路径**，少写散文总结。
+- 搬运 / 飞书 / 素材 / 半自动操作
+- 默认 CDP owner：**9225**（与大禹共用端口锁）
+- 产出优先 **结构化 + 路径**，少写散文总结
 
 ### 大禹
 
-- 管道、队列、watchdog、降级路线；health check 结果落 JSON。
-- 跨角色阻塞时升级 handoff，不 silently drop。
+- 管道治理 / 健康检查 / 降级接棒
+- 管道、队列、watchdog、降级路线；health check 结果落 JSON
+- 跨角色阻塞时升级 handoff，不 silently drop
 
 ---
 
 ## 目录结构
 
-```
+```text
 ai-team-ops/
 ├── AGENTS.md          # 本文件 — 角色与契约
 ├── skills/            # 可安装/可引用的技能包
 ├── evals/             # 评测题与通过标准
-├── docs/              #  toolchain、GitHub、MCP 等
+├── docs/              # toolchain、GitHub、MCP 等
 ├── tasks/             # 任务记录（ticket 级）
 ├── evidence/          # 证据归档（本仓示例/模板）
 └── scripts/           # 可复用 ops 脚本（轻量）

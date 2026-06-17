@@ -3,13 +3,13 @@
 ## 现状（Phase 2）
 
 | 层 | 组件 | 状态 |
-|----|------|------|
+| --- | --- | --- |
 | 指挥 | 玄策 broker + remote worker | monorepo 生产 |
 | 执行 | 白起/卫青 Codex，鲁班 Cursor | 已分工 |
 | 半自动 | 青鸟 9225，飞书 gateway | 已部署 |
 | 管道 | 大禹 pipeline watchdog/reconcile | 计划任务 Hidden |
 | 证据 | evidence_ops + savepoint | 真源 monorepo |
-| 本仓 | skills + evals + docs | **Phase 2 填充中** |
+| 本仓 | skills + evals + docs | **Phase 2 已完成** |
 
 ## Phase 3（下一步）
 

@@ -12,18 +12,23 @@
 
 ## 输出（evidence 必填）
 
-```
+```text
 evidence/novel_ops/<ticket>/<timestamp>/
 ├── outline.md
 ├── chapter_draft.md
-├── metadata.json      # { "ok": true, "word_count", "platform", ... }
-└── self_check.md      # 自检清单勾选
+├── metadata.json
+└── self_check.md
 ```
+
+`metadata.json` 示例字段：`ok`、`word_count`、`platform`。
 
 ## 完成标准
 
 ```json
-{ "status": "completed", "result": { "ok": true } }
+{
+  "status": "completed",
+  "result": { "ok": true }
+}
 ```
 
 仅当 `metadata.json` 中 `ok: true` 且编辑自检通过。
@@ -31,7 +36,7 @@ evidence/novel_ops/<ticket>/<timestamp>/
 ## 角色默认
 
 | 步骤 | Owner |
-|------|-------|
+| --- | --- |
 | 大纲/结构 | 玄策 裁定 + 白起/卫青 起草 |
 | 素材整理 | 青鸟 |
 | 技术导出/自动化 | 鲁班 |

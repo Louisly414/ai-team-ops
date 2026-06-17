@@ -8,7 +8,11 @@
 ## 流程
 
 1. **规划路径** — `evidence/<domain>/<ticket>/<YYYYMMDD_HHMMSS>/`
-2. **写 manifest** — `manifest.json`：
+2. **写 manifest** — `manifest.json`（见下方示例）
+3. **禁止 secrets** — 不得含 token、webhook、`.env` 内容。
+4. **验收** — 玄策只读 manifest + 引用文件；**不认聊天**。
+
+### manifest.json 示例
 
 ```json
 {
@@ -19,9 +23,6 @@
   "result": { "ok": true }
 }
 ```
-
-3. **禁止 secrets** — 不得含 token、webhook、`.env` 内容。
-4. **验收** — 玄策只读 manifest + 引用文件；**不认聊天**。
 
 ## completed 硬门
 

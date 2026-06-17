@@ -1,5 +1,5 @@
-# Normalize text files: UTF-8 without BOM, LF line endings.
-*.md text eol=lf
+# Markdown: CRLF for GitHub raw readers that only split on \r\n (Xuance broker compatibility).
+*.md text eol=crlf
 *.json text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf

@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 本仓库定义 AI Team Operations 的协作契约。
 

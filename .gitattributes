@@ -1,5 +1,10 @@
-# Markdown: CRLF for GitHub raw readers that only split on \r\n (Xuance broker compatibility).
-*.md text eol=crlf
+# Store markdown as exact bytes (CRLF) for GitHub raw readers that split on \r\n only.
+AGENTS.md -text
+docs/TOOLCHAIN_ROADMAP.md -text
+skills/novel_ops/SKILL.md -text
+skills/evidence_ops/SKILL.md -text
+
+# Other text files keep normal normalization
 *.json text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf

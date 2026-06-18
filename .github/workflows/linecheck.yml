@@ -1,0 +1,24 @@
+name: linecheck
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  linecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check committed blob line endings
+        run: python scripts/check_blob_line_endings.py HEAD

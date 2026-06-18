@@ -1,0 +1,38 @@
+name: Team task
+about: Create a tracked ai-team-ops task
+labels: [task]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should be changed or decided?
+    validations:
+      required: true
+  - type: dropdown
+    id: owner
+    attributes:
+      label: Owner
+      options:
+        - 玄策
+        - 白起
+        - 卫青
+        - 鲁班
+        - 青鸟
+        - 大禹
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence requirement
+      description: What file/job/path proves completion?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Include status/result/truncated/path rules when relevant.
+    validations:
+      required: true

@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-06-18T00:11:10Z",
+  "commit": "99a0a4e5f9f9179aec2075d62a603eb067e66e97",
+  "check_method": "git cat-file blob <commit>:<path> (bytes, not working tree)",
+  "files": {
+    "AGENTS.md": {
+      "blob_bytes": 1738,
+      "blob_splitlines": 95,
+      "crlf_count": 95,
+      "lf_only_count": 0,
+      "bom_present": false,
+      "first_200_repr": "# AGENTS.md\r\n\r\n本仓库定义 AI Team Operations 的协作契约。\r\n\r\n---\r\n\r\n## 核心原则\r\n\r\n- 只认 evidence，不认聊天记忆。\r\n- completed 必须满足 status=completed 且 result.ok=true。\r\n- 读文件任务还必须确认 truncated=false。\r\n\r\n---\r\n\r\n## 团队角色\r\n\r\n### 玄"
+    },
+    "docs/TOOLCHAIN_ROADMAP.md": {
+      "blob_bytes": 1030,
+      "blob_splitlines": 30,
+      "crlf_count": 30,
+      "lf_only_count": 0,
+      "bom_present": false,
+      "first_200_repr": "# Toolchain Roadmap — AI Team Ops\r\n\r\n## 现状（Phase 2）\r\n\r\n| 层 | 组件 | 状态 |\r\n| --- | --- | --- |\r\n| 指挥 | 玄策 broker + remote worker | monorepo 生产 |\r\n| 执行 | 白起/卫青 Codex，鲁班 Cursor | 已分工 |\r\n| 半自动 | 青鸟 9225，飞书 "
+    },
+    "skills/novel_ops/SKILL.md": {
+      "blob_bytes": 1014,
+      "blob_splitlines": 45,
+      "crlf_count": 45,
+      "lf_only_count": 0,
+      "bom_present": false,
+      "first_200_repr": "# novel_ops — 小说/内容生产流水线\r\n\r\n## 何时使用\r\n\r\n- 章节大纲、人设卡、连载节奏、平台发文草稿。\r\n- 需要将创意落成可验收文件（outline、chapter draft、metadata.json）。\r\n\r\n## 输入\r\n\r\n- tasks/<ticket>.md：题材、字数、禁忌、目标平台。\r\n- 可选：reference 路径、竞品笔记（docs/COMPETI"
+    },
+    "skills/evidence_ops/SKILL.md": {
+      "blob_bytes": 1218,
+      "blob_splitlines": 54,
+      "crlf_count": 54,
+      "lf_only_count": 0,
+      "bom_present": false,
+      "first_200_repr": "# evidence_ops — 证据落盘与验收\r\n\r\n## 何时使用\r\n\r\n- 任何需要 prove not describe 的任务前后。\r\n- handoff 保存、savepoint、ticket 封板前自检。\r\n\r\n## 流程\r\n\r\n1. 规划路径：evidence/<domain>/<ticket>/<YYYYMMDD_HHMMSS>/\r\n2. 写 manifest.json（见下方示"
+    }
+  }
+}

@@ -36,6 +36,8 @@
 
 result.ok=false 或缺 manifest → 不得 completed。
 
+读文件任务还必须确认 `truncated=false`。
+
 ## 与 monorepo 关系
 
 - 生产证据优先：ecom-rpa/shared_workspace/evidence/

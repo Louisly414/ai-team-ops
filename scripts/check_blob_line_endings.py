@@ -1,23 +1,46 @@
 #!/usr/bin/env python3
-"""Validate selected Git blobs for CRLF line endings and no BOM.
+"""Validate selected Git blobs for line endings and no BOM.
 
 This script checks committed blobs, not only working-tree files.
 It is designed for the ai-team-ops repo after the CRLF/raw-reader issue.
+
+By default, only legacy markdown targets require CRLF bytes. Other targets must
+have reasonable line counts and no BOM. Pass --strict-crlf to require CRLF on all.
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import subprocess
 import sys
-from pathlib import Path
 
 TARGETS = [
+    "AGENTS.md",
+    "README.md",
+    "docs/TOOLCHAIN_ROADMAP.md",
+    "docs/GITHUB_WORKFLOW.md",
+    "docs/MCP_AND_EXTENSIONS.md",
+    "docs/COMPETITOR_LEARNING_NOTES.md",
+    "skills/novel_ops/SKILL.md",
+    "skills/evidence_ops/SKILL.md",
+    "skills/research_ops/SKILL.md",
+    "skills/code_review/SKILL.md",
+    "skills/artifact_ops/SKILL.md",
+    "skills/github_ops/SKILL.md",
+    "skills/rpa_ops/SKILL.md",
+    "skills/self_upgrade_ops/SKILL.md",
+    "evals/generalist_benchmark.md",
+    ".github/ISSUE_TEMPLATE/task.yml",
+    ".github/pull_request_template.md",
+]
+
+CRLF_STRICT_TARGETS = {
     "AGENTS.md",
     "docs/TOOLCHAIN_ROADMAP.md",
     "skills/novel_ops/SKILL.md",
     "skills/evidence_ops/SKILL.md",
-]
+}
 
 
 def git_blob_bytes(ref: str, path: str) -> bytes:
@@ -39,23 +62,41 @@ def analyze(data: bytes) -> dict:
     }
 
 
+def validate_item(path: str, item: dict, *, strict_crlf: bool) -> list[str]:
+    errors: list[str] = []
+    min_lines = 2 if path.endswith((".yml", ".yaml")) else 3
+    if item["blob_splitlines"] < min_lines:
+        errors.append("blob_splitlines_too_low")
+    if item["bom_present"]:
+        errors.append("bom_present")
+    if strict_crlf or path in CRLF_STRICT_TARGETS:
+        if item["crlf_count"] <= 0:
+            errors.append("crlf_missing")
+        if item["lf_only_count"] != 0:
+            errors.append("lf_only_present")
+    return errors
+
+
 def main() -> int:
-    ref = sys.argv[1] if len(sys.argv) > 1 else "HEAD"
-    commit = subprocess.check_output(["git", "rev-parse", ref], text=True).strip()
-    result = {"commit": commit, "files": {}}
+    parser = argparse.ArgumentParser(description="Check committed blob line endings")
+    parser.add_argument("ref", nargs="?", default="HEAD", help="Git ref to inspect")
+    parser.add_argument(
+        "--strict-crlf",
+        action="store_true",
+        help="Require CRLF on every target (not just legacy markdown)",
+    )
+    args = parser.parse_args()
+
+    commit = subprocess.check_output(["git", "rev-parse", args.ref], text=True).strip()
+    result = {"commit": commit, "strict_crlf": args.strict_crlf, "files": {}}
     ok = True
 
     for path in TARGETS:
-        data = git_blob_bytes(ref, path)
+        data = git_blob_bytes(args.ref, path)
         item = analyze(data)
+        item["errors"] = validate_item(path, item, strict_crlf=args.strict_crlf)
         result["files"][path] = item
-        if item["blob_splitlines"] <= 2:
-            ok = False
-        if item["crlf_count"] <= 0:
-            ok = False
-        if item["lf_only_count"] != 0:
-            ok = False
-        if item["bom_present"]:
+        if item["errors"]:
             ok = False
 
     print(json.dumps(result, ensure_ascii=False, indent=2))

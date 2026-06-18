@@ -1,4 +1,4 @@
-name: linecheck
+name: contractcheck
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  linecheck:
+  contractcheck:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,5 +20,5 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Check committed blob line endings
-        run: python scripts/check_blob_line_endings.py HEAD
+      - name: Check repository contract
+        run: python scripts/check_repo_contract.py
